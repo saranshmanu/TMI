@@ -43,6 +43,7 @@ class Constants {
 	public static let announcements = "announcements"
 	public static let messageId = "messageId"
 	public static let title = "title"
+	public static let fcmToken = "fcmToken"
 	
 	public static let ROLE_SPEAKER = "speaker"
 	public static let ROLE_EVALUATOR = "evaluator"

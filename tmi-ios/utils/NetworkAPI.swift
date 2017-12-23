@@ -15,16 +15,22 @@ class NetworkAPI {
     public class PublicAPI {
 		
 		public static func signIn(userId: String, password: String) -> Promise<JSON> {
-			return publicCall(route: "/auth/signIn", params: [
-				Constants.userId: userId,
-				Constants.password: password
-			])
+			return publicCall(
+				route: "/auth/signIn",
+				params: [
+					Constants.userId: userId,
+					Constants.password: password
+				]
+			)
 		}
 		
 		public static func forgotPassword(email: String) -> Promise<JSON> {
-			return publicCall(route: "/auth/forgotPassword", params: [
-				Constants.email: email
-			])
+			return publicCall(
+				route: "/auth/forgotPassword",
+				params: [
+					Constants.email: email
+				]
+			)
 		}
 		
 		public static func getAccessToken(authToken: String) -> Promise<JSON> {
@@ -71,7 +77,62 @@ class NetworkAPI {
     
     public class PrivateAPI {
 		
+		public static func getProfile() -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/user/profile"),
+				params: [:]
+			)
+		}
 		
+		public static func getSessions(clubId: String) -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/info/sessions"),
+				params: [
+					Constants.clubId: clubId
+				]
+			)
+		}
+		
+		public static func getRoles(sessionId: String) -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/info/roles"),
+				params: [
+					Constants.sessionId: sessionId
+				]
+			)
+		}
+		
+		public static func getUsers(clubId: String) -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/info/members"),
+				params: [
+					Constants.clubId: clubId
+				]
+			)
+		}
+		
+		public static func getAttendance() -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/info/attendance"),
+				params: [:]
+			)
+		}
+		
+		public static func getAnnouncements() -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/info/announcements"),
+				params: [:]
+			)
+		}
+		
+		public static func updateFCMToken(fcmToken: String) -> Promise<JSON> {
+			return privateCall(
+				route: NetworkAPI.getUrl(route: "/update/fcmToken"),
+				params: [
+					Constants.fcmToken: fcmToken
+				]
+			)
+		}
 		
 		private static func privateCall(route: String, params: Parameters) -> Promise<JSON> {
 			return firstly {
