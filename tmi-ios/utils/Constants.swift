@@ -8,7 +8,7 @@
 
 class Constants {
 	
-    public static let baseUrl = ""
+    public static let baseUrl = "https://api.tmivit.com"
 	public static let accessToken = "accessToken"
 	public static let authToken = "authToken"
 	public static let success = "success"

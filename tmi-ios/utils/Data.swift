@@ -108,10 +108,10 @@ class Data {
 				
 				session.sessionId = sessionJson[Constants.sessionId].string!
 				session.date = sessionJson[Constants.date].int64!
-				session.wordOfDay = sessionJson[Constants.wordOfDay].string!
-				session.wordMeaning = sessionJson[Constants.wordMeaning].string!
-				session.wordUsage = sessionJson[Constants.wordUsage].string!
-				session.genEvalReport = sessionJson[Constants.genEvalReport].string!
+				session.wordOfDay = sessionJson[Constants.wordOfDay].string ?? ""
+				session.wordMeaning = sessionJson[Constants.wordMeaning].string ?? ""
+				session.wordUsage = sessionJson[Constants.wordUsage].string ?? ""
+				session.genEvalReport = sessionJson[Constants.genEvalReport].string ?? ""
 				
 				try! realm.write {
 					realm.add(session)
@@ -133,7 +133,7 @@ class Data {
 							
 							role.session = session
 							role.user = realm.objects(User.self)
-								.filter("userId == " + roleJson[Constants.userId].string!)
+								.filter("userId == '\(roleJson[Constants.userId].string!)'")
 								.first!
 							role.roleId = roleJson[Constants.roleId].string!
 							role.role = roleJson[Constants.role].string!
@@ -143,7 +143,7 @@ class Data {
 							role.ahs = roleJson[Constants.ahs].int ?? 0
 							role.grammarianReport = roleJson[Constants.grammarianReport].string ?? ""
 							role.evaluatee = realm.objects(User.self)
-								.filter("userId == " + (roleJson[Constants.evaluatee].string ?? "none"))
+								.filter("userId == '" + (roleJson[Constants.evaluatee].string ?? "none") + "'")
 								.first ?? nil
 							roles.append(role)
 						}
@@ -180,13 +180,13 @@ class Data {
 			
 			var attendances : [Attendance] = []
 			let myself = realm.objects(User.self)
-				.filter("userId == " + userId)
+				.filter("userId == '\(userId)'")
 				.first!
 			for attendanceJson in json[Constants.attendance].array! {
 				let attendance = Attendance()
 				
 				attendance.session = realm.objects(Session.self)
-					.filter("sessionId == " + attendanceJson[Constants.sessionId].string!)
+					.filter("sessionId == '\(attendanceJson[Constants.sessionId].string!)'")
 					.first!
 				attendance.user = myself
 				attendance.attendanceImpl = attendanceJson[Constants.attendance].string!

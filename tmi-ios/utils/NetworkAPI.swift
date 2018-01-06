@@ -79,14 +79,14 @@ class NetworkAPI {
 		
 		public static func getProfile() -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/user/profile"),
+				route: "/user/profile",
 				params: [:]
 			)
 		}
 		
 		public static func getSessions(clubId: String) -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/info/sessions"),
+				route: "/info/sessions",
 				params: [
 					Constants.clubId: clubId
 				]
@@ -95,7 +95,7 @@ class NetworkAPI {
 		
 		public static func getRoles(sessionId: String) -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/info/roles"),
+				route: "/info/roles",
 				params: [
 					Constants.sessionId: sessionId
 				]
@@ -104,7 +104,7 @@ class NetworkAPI {
 		
 		public static func getUsers(clubId: String) -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/info/members"),
+				route: "/info/members",
 				params: [
 					Constants.clubId: clubId
 				]
@@ -113,21 +113,21 @@ class NetworkAPI {
 		
 		public static func getAttendance() -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/info/attendance"),
+				route: "/info/attendance",
 				params: [:]
 			)
 		}
 		
 		public static func getAnnouncements() -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/info/announcements"),
+				route: "/info/announcements",
 				params: [:]
 			)
 		}
 		
 		public static func updateFCMToken(fcmToken: String) -> Promise<JSON> {
 			return privateCall(
-				route: NetworkAPI.getUrl(route: "/update/fcmToken"),
+				route: "/update/fcmToken",
 				params: [
 					Constants.fcmToken: fcmToken
 				]
