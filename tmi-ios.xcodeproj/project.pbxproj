@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		442177FA5B59D09DE594ADDD /* Pods_tmi_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389A7869CA58A2A6A90E59CF /* Pods_tmi_ios.framework */; };
+		950E46161FF12EA300DA9F6F /* RolesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E46111FF12EA200DA9F6F /* RolesViewController.swift */; };
+		950E46171FF12EA300DA9F6F /* RolesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */; };
+		950E46181FF12EA300DA9F6F /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E46131FF12EA300DA9F6F /* AnnouncementsViewController.swift */; };
+		950E46191FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */; };
+		950E461B1FF1414700DA9F6F /* AttandanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */; };
+		950E461E1FF161AA00DA9F6F /* AttandanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */; };
+		95975F932000FCF800896F58 /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95975F922000FCF800896F58 /* MembersViewController.swift */; };
 		ED01032C1FED31E700039344 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01032B1FED31E700039344 /* NetworkAPI.swift */; };
 		ED01032E1FED320100039344 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01032D1FED320100039344 /* Data.swift */; };
 		ED0103301FED327100039344 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01032F1FED327100039344 /* Constants.swift */; };
@@ -40,6 +47,13 @@
 /* Begin PBXFileReference section */
 		0E3C68E1CD8431E5DAFE1445 /* Pods-tmi-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmi-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-tmi-ios/Pods-tmi-ios.release.xcconfig"; sourceTree = "<group>"; };
 		389A7869CA58A2A6A90E59CF /* Pods_tmi_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tmi_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950E46111FF12EA200DA9F6F /* RolesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RolesViewController.swift; sourceTree = "<group>"; };
+		950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RolesCollectionViewCell.swift; sourceTree = "<group>"; };
+		950E46131FF12EA300DA9F6F /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
+		950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsTableViewCell.swift; sourceTree = "<group>"; };
+		950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttandanceViewController.swift; sourceTree = "<group>"; };
+		950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttandanceTableViewCell.swift; sourceTree = "<group>"; };
+		95975F922000FCF800896F58 /* MembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewController.swift; sourceTree = "<group>"; };
 		CAA9D79419939BB24A1DE963 /* Pods-tmi-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmi-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tmi-ios/Pods-tmi-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		ED01032B1FED31E700039344 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ED01032D1FED320100039344 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -146,9 +160,16 @@
 		EDA6465E1FED2275009A3C60 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */,
+				950E46131FF12EA300DA9F6F /* AnnouncementsViewController.swift */,
+				950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */,
+				950E46111FF12EA200DA9F6F /* RolesViewController.swift */,
 				EDA646651FED238F009A3C60 /* SplashViewController.swift */,
 				ED0103411FED920100039344 /* HomeViewController.swift */,
 				ED3500441FEEDAFB0095BF22 /* LoginViewController.swift */,
+				950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */,
+				950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */,
+				95975F922000FCF800896F58 /* MembersViewController.swift */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -344,6 +365,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-tmi-ios/Pods-tmi-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -352,6 +374,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -369,17 +392,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950E461B1FF1414700DA9F6F /* AttandanceViewController.swift in Sources */,
 				ED3500451FEEDAFB0095BF22 /* LoginViewController.swift in Sources */,
 				ED01033A1FED8D1000039344 /* Session.swift in Sources */,
 				ED0103301FED327100039344 /* Constants.swift in Sources */,
 				EDA646661FED238F009A3C60 /* SplashViewController.swift in Sources */,
+				950E46161FF12EA300DA9F6F /* RolesViewController.swift in Sources */,
 				ED01033E1FED8FC900039344 /* Message.swift in Sources */,
+				950E46171FF12EA300DA9F6F /* RolesCollectionViewCell.swift in Sources */,
 				ED0103401FED903C00039344 /* Attendance.swift in Sources */,
 				ED0103381FED8CD000039344 /* User.swift in Sources */,
 				EDA6463D1FED21AD009A3C60 /* AppDelegate.swift in Sources */,
+				950E46191FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift in Sources */,
+				950E46181FF12EA300DA9F6F /* AnnouncementsViewController.swift in Sources */,
 				ED0103421FED920100039344 /* HomeViewController.swift in Sources */,
 				ED01032C1FED31E700039344 /* NetworkAPI.swift in Sources */,
+				95975F932000FCF800896F58 /* MembersViewController.swift in Sources */,
 				ED01032E1FED320100039344 /* Data.swift in Sources */,
+				950E461E1FF161AA00DA9F6F /* AttandanceTableViewCell.swift in Sources */,
 				ED01033C1FED8DAB00039344 /* Role.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,7 +556,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JCRFV5ZL52;
 				INFOPLIST_FILE = "tmi-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tmivit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -541,7 +573,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JCRFV5ZL52;
 				INFOPLIST_FILE = "tmi-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tmivit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
