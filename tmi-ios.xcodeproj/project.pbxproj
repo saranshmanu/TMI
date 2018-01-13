@@ -160,15 +160,12 @@
 		EDA6465E1FED2275009A3C60 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
-				950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */,
-				950E46131FF12EA300DA9F6F /* AnnouncementsViewController.swift */,
-				950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */,
-				950E46111FF12EA200DA9F6F /* RolesViewController.swift */,
 				EDA646651FED238F009A3C60 /* SplashViewController.swift */,
-				ED0103411FED920100039344 /* HomeViewController.swift */,
 				ED3500441FEEDAFB0095BF22 /* LoginViewController.swift */,
+				ED0103411FED920100039344 /* HomeViewController.swift */,
+				950E46111FF12EA200DA9F6F /* RolesViewController.swift */,
 				950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */,
-				950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */,
+				950E46131FF12EA300DA9F6F /* AnnouncementsViewController.swift */,
 				95975F922000FCF800896F58 /* MembersViewController.swift */,
 			);
 			path = viewController;
@@ -188,6 +185,9 @@
 		EDA646601FED228D009A3C60 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */,
+				950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */,
+				950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";

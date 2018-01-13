@@ -13,27 +13,29 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var membersTableView: UITableView!
     
+    var clubMembers:[NSDictionary] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         membersTableView.dataSource = self
         membersTableView.delegate = self
         
-        let urlProfile = "https://api.tmivit.com/info/members"
-        Alamofire.request(urlProfile, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
-            if res.result.isSuccess{
-                let result:NSDictionary = res.result.value as! NSDictionary
-                let check:Bool = result["success"]! as! Bool
-                if check == true{
-                    Data.clubMembers = result["members"] as! [NSDictionary]
-                    self.membersTableView.reloadData()
-                }else{
-                    print("Failed to fetch profile")
-                }
-            }else{
-                print("Failed JSON response")
-            }
-        }
+//        let urlProfile = "https://api.tmivit.com/info/members"
+//        Alamofire.request(urlProfile, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
+//            if res.result.isSuccess{
+//                let result:NSDictionary = res.result.value as! NSDictionary
+//                let check:Bool = result["success"]! as! Bool
+//                if check == true{
+//                    Data.clubMembers = result["members"] as! [NSDictionary]
+//                    self.membersTableView.reloadData()
+//                }else{
+//                    print("Failed to fetch profile")
+//                }
+//            }else{
+//                print("Failed JSON response")
+//            }
+//        }
         
     }
 
@@ -47,11 +49,11 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messages", for: indexPath) as! AnnouncementsTableViewCell
-        cell.textLabel?.text = Data.clubMembers[indexPath.row]["name"]! as! String
+        cell.textLabel?.text = clubMembers[indexPath.row]["name"]! as! String
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.clubMembers.count
+        return clubMembers.count
     }
     
     /*

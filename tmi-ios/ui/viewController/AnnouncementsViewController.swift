@@ -14,6 +14,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     let token:String = Data.accessToken
+    var announcements:[NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,43 +22,44 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        let urlProfile = "https://api.tmivit.com/user/profile"
-        Alamofire.request(urlProfile, method: .post, headers : ["accessToken" : token]).responseJSON{ res in
-            if res.result.isSuccess{
-                let result:NSDictionary = res.result.value as! NSDictionary
-                let check:Bool = result["success"]! as! Bool
-                if check == true{
-                    print("Successully fetched profile")
-                    Data.email = String(describing: result["email"]!)
-                    Data.name = String(describing: result["name"]!)
-                    Data.userId = String(describing: result["userId"]!)
-                    Data.username = String(describing: result["username"]!)
-                    Data.dob = Int64(result["dob"] as! Int)
-                    Data.clubId = String(describing: result["clubId"]!)
-                }else{
-                    print("Failed to fetch profile")
-                }
-            }else{
-                print("Failed JSON response")
-            }
-        }
-        let url = "https://api.tmivit.com/info/announcements"
-        Alamofire.request(url, method: .post, headers : ["accessToken" : token]).responseJSON{ res in
-            if res.result.isSuccess{
-                let result:NSDictionary = res.result.value as! NSDictionary
-                let check:Bool = result["success"]! as! Bool
-                if check == true{
-                    print("Successully fetched announcements")
-                    Data.announcements = result["announcements"] as! [NSDictionary]
-                    print(Data.announcements)
-                    self.tableView.reloadData()
-                }else{
-                    print("Failed to fetch accouncements")
-                }
-            }else{
-                print("Failed JSON response")
-            }
-        }
+        
+//        let urlProfile = "https://api.tmivit.com/user/profile"
+//        Alamofire.request(urlProfile, method: .post, headers : ["accessToken" : token]).responseJSON{ res in
+//            if res.result.isSuccess{
+//                let result:NSDictionary = res.result.value as! NSDictionary
+//                let check:Bool = result["success"]! as! Bool
+//                if check == true{
+//                    print("Successully fetched profile")
+//                    Data.email = String(describing: result["email"]!)
+//                    Data.name = String(describing: result["name"]!)
+//                    Data.userId = String(describing: result["userId"]!)
+//                    Data.username = String(describing: result["username"]!)
+//                    Data.dob = Int64(result["dob"] as! Int)
+//                    Data.clubId = String(describing: result["clubId"]!)
+//                }else{
+//                    print("Failed to fetch profile")
+//                }
+//            }else{
+//                print("Failed JSON response")
+//            }
+//        }
+//        let url = "https://api.tmivit.com/info/announcements"
+//        Alamofire.request(url, method: .post, headers : ["accessToken" : token]).responseJSON{ res in
+//            if res.result.isSuccess{
+//                let result:NSDictionary = res.result.value as! NSDictionary
+//                let check:Bool = result["success"]! as! Bool
+//                if check == true{
+//                    print("Successully fetched announcements")
+//                    announcements = result["announcements"] as! [NSDictionary]
+//                    print(announcements)
+//                    self.tableView.reloadData()
+//                }else{
+//                    print("Failed to fetch accouncements")
+//                }
+//            }else{
+//                print("Failed JSON response")
+//            }
+//        }
         
     }
 
@@ -72,12 +74,12 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messages", for: indexPath) as! AnnouncementsTableViewCell
         cell.background.layer.cornerRadius = 5.0
-        cell.subjectTextField.text = String(describing: Data.announcements[indexPath.row]["title"])
-        cell.messageTextField.text = String(describing: Data.announcements[indexPath.row]["message"])
+        cell.subjectTextField.text = String(describing: announcements[indexPath.row]["title"])
+        cell.messageTextField.text = String(describing: announcements[indexPath.row]["message"])
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.announcements.count
+        return announcements.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250

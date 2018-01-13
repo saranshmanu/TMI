@@ -170,5 +170,3 @@ class NetworkAPI {
         return Constants.baseUrl + route;
     }
 }
-
-

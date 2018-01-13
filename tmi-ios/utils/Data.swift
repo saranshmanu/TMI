@@ -11,21 +11,17 @@ import RealmSwift
 import SwiftyJSON
 
 class Data {
-    public static var roles:[NSDictionary] = []
-    public static var announcements:[NSDictionary] = []
-    public static var sessions:[NSDictionary] = []
-    public static var attandance:[NSDictionary] = []
-    public static var clubMembers:[NSDictionary] = []
+    
     public static var accessToken = ""
-	public static var authToken = ""
-	public static var loggedIn = false
-	public static var userId = ""
-	public static var username = ""
-	public static var name = ""
-	public static var email = ""
-	public static var dob : Int64 = 0
-	public static var clubId = ""
-	
+    public static var authToken = ""
+    public static var loggedIn = false
+    public static var userId = ""
+    public static var username = ""
+    public static var name = ""
+    public static var email = ""
+    public static var dob : Int64 = 0
+    public static var clubId = ""
+    
     public static func initialize() {
         let defaults = UserDefaults.standard
         accessToken = defaults.string(forKey: Constants.accessToken) ?? ""
@@ -207,3 +203,4 @@ class Data {
         } // TODO messages later
     }
 }
+

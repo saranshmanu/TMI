@@ -12,6 +12,8 @@ import Alamofire
 
 class AttandanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var attandance:[NSDictionary] = []
+    
     @IBOutlet weak var attdanceTableView: UITableView!
     @IBOutlet weak var pieChartView: PieChartView!
 
@@ -32,9 +34,9 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
     func attendanceGraph(){
         var present:Double = 0
         var total:Double = 0
-        if Data.attandance.count != 0{
-            for i in 0...Data.attandance.count-1{
-                if String(describing: Data.attandance[i]["attendance"]!) == "present" {
+        if attandance.count != 0{
+            for i in 0...attandance.count-1{
+                if String(describing: attandance[i]["attendance"]!) == "present" {
                     present = present+1
                 }
                 total = total + 1
@@ -51,38 +53,38 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
         attdanceTableView.delegate = self
         attdanceTableView.dataSource = self
         // Do any additional setup after loading the view.
-        let urlAttandance = "https://api.tmivit.com/info/attendance"
-        Alamofire.request(urlAttandance, method: .post, headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
-            if res.result.isSuccess{
-                let result:NSDictionary = res.result.value as! NSDictionary
-                let check:Bool = result["success"]! as! Bool
-                if check == true{
-                    print("Successully fetched attandance")
-                    Data.attandance = result["attendance"] as! [NSDictionary]
-                    let urlSessions = "https://api.tmivit.com/info/sessions"
-                    Alamofire.request(urlSessions, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ response in
-                        if response.result.isSuccess{
-                            let results:NSDictionary = response.result.value as! NSDictionary
-                            let check:Bool = results["success"]! as! Bool
-                            if check == true{
-                                print("Successully fetched sessions")
-                                Data.sessions = results["sessions"] as! [NSDictionary]
-                                self.attdanceTableView.reloadData()
-                                self.attendanceGraph()
-                            }else{
-                                print("Failed to fetch sessions")
-                            }
-                        }else{
-                            print("Failed JSON response")
-                        }
-                    }
-                }else{
-                    print("Failed to fetch attandance")
-                }
-            }else{
-                print("Failed JSON response")
-            }
-        }
+//        let urlAttandance = "https://api.tmivit.com/info/attendance"
+//        Alamofire.request(urlAttandance, method: .post, headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
+//            if res.result.isSuccess{
+//                let result:NSDictionary = res.result.value as! NSDictionary
+//                let check:Bool = result["success"]! as! Bool
+//                if check == true{
+//                    print("Successully fetched attandance")
+//                    attandance = result["attendance"] as! [NSDictionary]
+//                    let urlSessions = "https://api.tmivit.com/info/sessions"
+//                    Alamofire.request(urlSessions, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ response in
+//                        if response.result.isSuccess{
+//                            let results:NSDictionary = response.result.value as! NSDictionary
+//                            let check:Bool = results["success"]! as! Bool
+//                            if check == true{
+//                                print("Successully fetched sessions")
+//                                sessions = results["sessions"] as! [NSDictionary]
+//                                self.attdanceTableView.reloadData()
+//                                self.attendanceGraph()
+//                            }else{
+//                                print("Failed to fetch sessions")
+//                            }
+//                        }else{
+//                            print("Failed JSON response")
+//                        }
+//                    }
+//                }else{
+//                    print("Failed to fetch attandance")
+//                }
+//            }else{
+//                print("Failed JSON response")
+//            }
+//        }
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -108,14 +110,15 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "attandance", for: indexPath) as! AttandanceTableViewCell
-        if String(describing: Data.attandance[indexPath.row]["attendance"]!) == "present"{
+        if String(describing: attandance[indexPath.row]["attendance"]!) == "present"{
             cell.statusLabel.text = "Present"
         } else {
             cell.statusLabel.text = "Absent"
         }
-        let milisecond = Data.sessions[indexPath.row]["date"]! as! Int
+        let milisecond = attandance[indexPath.row]["date"]! as! Int
         let dateVar = Date.init(timeIntervalSince1970: TimeInterval(milisecond/1000))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
@@ -128,7 +131,7 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.attandance.count
+        return attandance.count
     }
     
     /*
