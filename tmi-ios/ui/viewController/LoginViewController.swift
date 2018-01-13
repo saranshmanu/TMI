@@ -10,16 +10,43 @@ import UIKit
 import PromiseKit
 import SwiftyJSON
 
-class LoginViewController : UIViewController {
+class LoginViewController : UIViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var topConstraintToMoveViewUp: NSLayoutConstraint!
+    @IBOutlet weak var ConstraintToMoveTextField: NSLayoutConstraint!
     @IBOutlet weak var userId: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        userId.text = "test"
-//        password.text = "1234"
+        loadingIndicator.isHidden = true
+        userId.delegate = self
+        password.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
+    }
+    
+    var constant:CGFloat = 150.0
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.27) {
+            self.topConstraintToMoveViewUp.constant -= self.constant
+            self.ConstraintToMoveTextField.constant += self.constant
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if !(self.userId.isEditing || self.password.isEditing) {
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.27, animations: {
+                self.topConstraintToMoveViewUp.constant += self.constant
+                self.ConstraintToMoveTextField.constant -= self.constant
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     @IBAction func onLogin(_ sender: Any) {
@@ -84,13 +111,24 @@ class LoginViewController : UIViewController {
     func disableControls() {
         userId.isEnabled = false
         password.isEnabled = false
+        loginButton.isEnabled = false
+        registerButton.isEnabled = false
         loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
     }
     
     func enableControls() {
         self.userId.isEnabled = true
         self.password.isEnabled = true
+        loginButton.isEnabled = true
+        registerButton.isEnabled = true
         self.loadingIndicator.isHidden = true
+        loadingIndicator.stopAnimating()
+    }
+    
+    @objc func dismissKeyboard() {
+        userId.resignFirstResponder()
+        password.resignFirstResponder()
     }
 }
 

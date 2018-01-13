@@ -42,7 +42,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cTH-Es-ErR">
                                                 <rect key="frame" x="71" y="374" width="233" height="99"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VPa-bY-kCS">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VPa-bY-kCS">
                                                         <rect key="frame" x="0.0" y="0.0" width="233" height="42"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.13730736299999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -61,7 +61,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u9A-oi-eoB">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u9A-oi-eoB">
                                                         <rect key="frame" x="0.0" y="57" width="233" height="42"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.13730736299999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -221,8 +221,12 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="ConstraintToMoveTextField" destination="V9U-g3-gXo" id="8rc-cD-1EX"/>
                         <outlet property="loadingIndicator" destination="aVU-H8-7d6" id="Bv8-dE-VRe"/>
+                        <outlet property="loginButton" destination="OOf-0m-K1p" id="ArN-2i-mxJ"/>
                         <outlet property="password" destination="u9A-oi-eoB" id="XIB-hy-ncl"/>
+                        <outlet property="registerButton" destination="unl-OJ-XC3" id="K0o-rV-DS5"/>
+                        <outlet property="topConstraintToMoveViewUp" destination="Juw-nt-pdE" id="iWj-p5-LGx"/>
                         <outlet property="userId" destination="VPa-bY-kCS" id="Cat-K2-5SZ"/>
                     </connections>
                 </viewController>
