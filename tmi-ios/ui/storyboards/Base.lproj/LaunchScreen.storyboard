@@ -24,12 +24,17 @@
                                     <constraint firstAttribute="height" constant="263" id="wKJ-sK-mZ0"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vzt-Mk-5D2">
+                                <rect key="frame" x="177" y="391" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PNn-LC-PTc" firstAttribute="top" secondItem="7FQ-GX-205" secondAttribute="top" constant="46" id="K3q-uP-fDm"/>
+                            <constraint firstItem="Vzt-Mk-5D2" firstAttribute="centerX" secondItem="7FQ-GX-205" secondAttribute="centerX" id="OQK-eS-zvS"/>
                             <constraint firstItem="7FQ-GX-205" firstAttribute="trailing" secondItem="PNn-LC-PTc" secondAttribute="trailing" constant="16" id="dDU-CR-Qtv"/>
                             <constraint firstItem="PNn-LC-PTc" firstAttribute="leading" secondItem="7FQ-GX-205" secondAttribute="leading" constant="16" id="dHX-oU-Jqk"/>
+                            <constraint firstItem="Vzt-Mk-5D2" firstAttribute="top" secondItem="PNn-LC-PTc" secondAttribute="bottom" constant="62" id="fo8-wg-gEN"/>
                             <constraint firstItem="PNn-LC-PTc" firstAttribute="centerX" secondItem="7FQ-GX-205" secondAttribute="centerX" id="mOr-Nh-7n7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7FQ-GX-205"/>

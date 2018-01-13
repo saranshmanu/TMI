@@ -3,8 +3,9 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'tmi-ios' do
-	pod 'Alamofire', '~> 4.6'
+	pod 'Alamofire'
 	pod 'PromiseKit/Alamofire'
 	pod 'RealmSwift'
 	pod 'SwiftyJSON'
+	pod 'Charts'
 end

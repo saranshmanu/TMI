@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.6.0)
+  - Charts (3.0.4):
+    - Charts/Core (= 3.0.4)
+  - Charts/Core (3.0.4)
   - PromiseKit/Alamofire (4.5.0):
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
@@ -12,18 +15,20 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.6)
+  - Alamofire
+  - Charts
   - PromiseKit/Alamofire
   - RealmSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   PromiseKit: 9c1d9f6d7b65e3951a90bea7f407c56972be5d8e
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 1619f15dc17d7d9ec407087bdfa10664e9fe76dd
+PODFILE CHECKSUM: f40a0ff5024252245bc6ba74fe1ca9ea06caa668
 
 COCOAPODS: 1.3.1
