@@ -23,17 +23,15 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.tabBarController?.tabBar.tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.barTintColor =  UIColor.white
-        self.navigationController?.navigationBar.barTintColor =  UIColor.white
-        self.tabBarController?.tabBar.tintColor = UIColor.black
-        UIApplication.shared.statusBarStyle = .default
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.tabBarController?.tabBar.barTintColor =  UIColor.black
+        self.navigationController?.navigationBar.barTintColor =  UIColor.black
+        self.tabBarController?.tabBar.tintColor = UIColor.white
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -59,7 +57,6 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     var roles = [[NSDictionary]]()
@@ -103,6 +100,7 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "roles", for: indexPath) as! RolesCollectionViewCell
         cell.background.layer.cornerRadius = 5.0
         let milisecond = sessions[indexPath.row]["date"]! as! Int
@@ -144,16 +142,6 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
             //wait until the roles are fetched
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 func getMonth(monthInNumber:Int) -> String{

@@ -20,6 +20,16 @@ class LoginViewController : UIViewController,UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    func alert(Title: String, Message: String ){
+        let alert = UIAlertController(
+            title: Title,
+            message: Message,
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingIndicator.isHidden = true
@@ -52,24 +62,12 @@ class LoginViewController : UIViewController,UITextFieldDelegate {
     @IBAction func onLogin(_ sender: Any) {
         disableControls()
         if userId.text == nil || userId.text! == "" {
-            let alert = UIAlertController(
-                title: "Error",
-                message: "The username cannot be empty!",
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            alert(Title: "Error", Message: "The username cannot be empty!")
             enableControls()
             return
         }
         if password.text == nil || password.text! == "" {
-            let alert = UIAlertController(
-                title: "Error",
-                message: "The password cannot be empty!",
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            alert(Title: "Error", Message: "The password cannot be empty!")
             enableControls()
             return
         }
@@ -91,13 +89,7 @@ class LoginViewController : UIViewController,UITextFieldDelegate {
                     let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
                     self.present(viewController, animated: true, completion: nil)
                 } else {
-                    let alert = UIAlertController(
-                        title: "Error",
-                        message: json[Constants.message].string!,
-                        preferredStyle: UIAlertControllerStyle.alert
-                    )
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    self.alert(Title: "Error", Message: json[Constants.message].string!)
                 }
                 return Promise().then {
                     return json

@@ -24,13 +24,6 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.barTintColor =  UIColor.white
-        self.navigationController?.navigationBar.barTintColor =  UIColor.white
-        self.tabBarController?.tabBar.tintColor = UIColor.black
-        UIApplication.shared.statusBarStyle = .default
-    }
-    
     func attendanceGraph(){
         var present:Double = 0
         var total:Double = 0
@@ -50,9 +43,15 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         attdanceTableView.delegate = self
         attdanceTableView.dataSource = self
-        // Do any additional setup after loading the view.
+        
+        self.tabBarController?.tabBar.barTintColor =  UIColor.black
+        self.navigationController?.navigationBar.barTintColor =  UIColor.black
+        self.tabBarController?.tabBar.tintColor = UIColor.white
+        UIApplication.shared.statusBarStyle = .lightContent
+        
 //        let urlAttandance = "https://api.tmivit.com/info/attendance"
 //        Alamofire.request(urlAttandance, method: .post, headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
 //            if res.result.isSuccess{
