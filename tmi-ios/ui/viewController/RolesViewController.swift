@@ -11,22 +11,12 @@ import RealmSwift
 
 class RolesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var sessions:[NSDictionary] = []
-    var roles:[NSDictionary] = []
-    
     @IBOutlet weak var sessionsCollectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.barTintColor =  UIColor.black
-        self.navigationController?.navigationBar.barTintColor =  UIColor.black
-        self.tabBarController?.tabBar.tintColor = UIColor.white
-        UIApplication.shared.statusBarStyle = .lightContent
-        sessionsCollectionView.reloadData()
-        collectionView.reloadData()
-    }
-    
     let realm = try! Realm()
+    var sessions:[NSDictionary] = []
+    var roles:[NSDictionary] = []
     
     func querySessions() {
         let session = realm.objects(Session.self)
@@ -42,7 +32,6 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
             ]
             sessions.append(temp)
         }
-        print(sessions)
         sessionsCollectionView.reloadData()
     }
     
@@ -80,12 +69,15 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         collectionView.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        sessionsCollectionView.reloadData()
+        collectionView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.barTintColor =  UIColor.black
-        self.navigationController?.navigationBar.barTintColor =  UIColor.black
-        self.tabBarController?.tabBar.tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
         collectionView.delegate = self
         collectionView.dataSource = self

@@ -8,82 +8,27 @@
 
 import UIKit
 import Charts
-import Alamofire
-
+import RealmSwift
 class AttandanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var attandance:[NSDictionary] = []
-    
-    @IBOutlet weak var attdanceTableView: UITableView!
+    var attendances:[NSDictionary] = []
+    @IBOutlet weak var attendanceTableView: UITableView!
     @IBOutlet weak var pieChartView: PieChartView!
-
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.barTintColor =  UIColor.black
-        self.navigationController?.navigationBar.barTintColor =  UIColor.black
-        self.tabBarController?.tabBar.tintColor = UIColor.white
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
     
     func attendanceGraph(){
         var present:Double = 0
         var total:Double = 0
-        if attandance.count != 0{
-            for i in 0...attandance.count-1{
-                if String(describing: attandance[i]["attendance"]!) == "present" {
-                    present = present+1
+        if attendances.count != 0{
+            for i in 0...attendances.count-1{
+                if String(describing: attendances[i]["attendanceImpl"]!) == "present" {
+                    present = present + 1
                 }
                 total = total + 1
             }
         }
-        print(present)
         let status = ["Present", "Absent"]
         let totalDays = [present, total-present]
         setChart(dataPoints: status, values: totalDays)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        attdanceTableView.delegate = self
-        attdanceTableView.dataSource = self
-        
-        self.tabBarController?.tabBar.barTintColor =  UIColor.black
-        self.navigationController?.navigationBar.barTintColor =  UIColor.black
-        self.tabBarController?.tabBar.tintColor = UIColor.white
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-//        let urlAttandance = "https://api.tmivit.com/info/attendance"
-//        Alamofire.request(urlAttandance, method: .post, headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
-//            if res.result.isSuccess{
-//                let result:NSDictionary = res.result.value as! NSDictionary
-//                let check:Bool = result["success"]! as! Bool
-//                if check == true{
-//                    print("Successully fetched attandance")
-//                    attandance = result["attendance"] as! [NSDictionary]
-//                    let urlSessions = "https://api.tmivit.com/info/sessions"
-//                    Alamofire.request(urlSessions, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ response in
-//                        if response.result.isSuccess{
-//                            let results:NSDictionary = response.result.value as! NSDictionary
-//                            let check:Bool = results["success"]! as! Bool
-//                            if check == true{
-//                                print("Successully fetched sessions")
-//                                sessions = results["sessions"] as! [NSDictionary]
-//                                self.attdanceTableView.reloadData()
-//                                self.attendanceGraph()
-//                            }else{
-//                                print("Failed to fetch sessions")
-//                            }
-//                        }else{
-//                            print("Failed JSON response")
-//                        }
-//                    }
-//                }else{
-//                    print("Failed to fetch attandance")
-//                }
-//            }else{
-//                print("Failed JSON response")
-//            }
-//        }
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -106,41 +51,68 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
         pieChartDataSet.colors = color
     }
     
+    func queryAttendance() {
+        let realm = try! Realm()
+        let attendance = realm.objects(Attendance.self)
+        var temp:NSDictionary
+        var tempSession:NSDictionary
+        var tempUser:NSDictionary
+        for i in attendance {
+            tempSession = [
+                "sessionId": i.session?.sessionId,
+                "date": i.session?.date,
+                "wordOfDay": i.session?.wordOfDay,
+                "wordMeaning": i.session?.wordMeaning,
+                "wordUsage": i.session?.wordMeaning,
+                "genEvalReport": i.session?.genEvalReport
+            ]
+            tempUser = [
+                "userId" : i.user?.userId,
+                "name" : i.user?.userId
+            ]
+            temp = [
+                "session": tempSession,
+                "user": tempUser,
+                "attendanceImpl": i.attendanceImpl,
+            ]
+            attendances.append(temp)
+        }
+        attendanceTableView.reloadData()
+        attendanceGraph()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        attendanceTableView.reloadData()
+        attendanceGraph()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .lightContent
+        attendanceTableView.delegate = self
+        attendanceTableView.dataSource = self
+        queryAttendance()
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "attandance", for: indexPath) as! AttandanceTableViewCell
-        if String(describing: attandance[indexPath.row]["attendance"]!) == "present"{
+        let x = attendances[indexPath.row] as NSDictionary
+        let y = x["session"] as! NSDictionary
+        let z = Constants.findDate(milliSeconds: y[Constants.date]! as! Int)
+        cell.dateLabel.text = String(z.date) + " " + Constants.getMonth(monthInNumber: z.month) + " " + String(z.year)
+        if String(describing: x["attendanceImpl"]!) == "present"{
             cell.statusLabel.text = "Present"
         } else {
             cell.statusLabel.text = "Absent"
         }
-        let milisecond = attandance[indexPath.row]["date"]! as! Int
-        let dateVar = Date.init(timeIntervalSince1970: TimeInterval(milisecond/1000))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
-        let date = dateFormatter.string(from: dateVar)
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: dateVar)
-        let month = calendar.component(.month, from: dateVar)
-        let day = calendar.component(.day, from: dateVar)
-        cell.dateLabel.text = String(day) + " " + Constants.getMonth(monthInNumber: month) + " " + String(year)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return attandance.count
+        return attendances.count
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

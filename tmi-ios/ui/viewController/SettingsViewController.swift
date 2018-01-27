@@ -11,18 +11,12 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.barTintColor =  UIColor.white
-        self.navigationController?.navigationBar.barTintColor =  UIColor.white
-        self.tabBarController?.tabBar.tintColor = UIColor.black
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.barTintColor =  UIColor.white
-        self.navigationController?.navigationBar.barTintColor =  UIColor.white
-        self.tabBarController?.tabBar.tintColor = UIColor.black
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func didReceiveMemoryWarning() {
