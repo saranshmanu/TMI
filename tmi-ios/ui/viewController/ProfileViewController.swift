@@ -1,14 +1,14 @@
 //
-//  SettingsViewController.swift
+//  ProfileViewController.swift
 //  tmi-ios
 //
-//  Created by Saransh Mittal on 14/01/18.
+//  Created by Saransh Mittal on 28/01/18.
 //  Copyright © 2018 Rakshith Ravi. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = .lightContent
@@ -21,5 +21,7 @@ class SettingsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+
 }
