@@ -15,7 +15,6 @@ class RolesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var wordOfDay: UILabel!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var DateTextField: UILabel!
-    @IBOutlet weak var YearTextField: UILabel!
     @IBOutlet weak var upcomingRoleTextField: UILabel!
     
 }

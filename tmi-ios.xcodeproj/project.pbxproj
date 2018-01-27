@@ -14,6 +14,7 @@
 		950E46191FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */; };
 		950E461B1FF1414700DA9F6F /* AttandanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */; };
 		950E461E1FF161AA00DA9F6F /* AttandanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */; };
+		951A2507201CD38800EBEF27 /* SessionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A2506201CD38800EBEF27 /* SessionsCollectionViewCell.swift */; };
 		9585F65C200AAB3800F6E877 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585F65B200AAB3800F6E877 /* SettingsViewController.swift */; };
 		9585F65E200AB03900F6E877 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585F65D200AB03900F6E877 /* HomeTabBarController.swift */; };
 		95975F932000FCF800896F58 /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95975F922000FCF800896F58 /* MembersViewController.swift */; };
@@ -54,6 +55,7 @@
 		950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsTableViewCell.swift; sourceTree = "<group>"; };
 		950E461A1FF1414600DA9F6F /* AttandanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttandanceViewController.swift; sourceTree = "<group>"; };
 		950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttandanceTableViewCell.swift; sourceTree = "<group>"; };
+		951A2506201CD38800EBEF27 /* SessionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9585F65B200AAB3800F6E877 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9585F65D200AB03900F6E877 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		95975F922000FCF800896F58 /* MembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				950E46141FF12EA300DA9F6F /* AnnouncementsTableViewCell.swift */,
 				950E46121FF12EA300DA9F6F /* RolesCollectionViewCell.swift */,
+				951A2506201CD38800EBEF27 /* SessionsCollectionViewCell.swift */,
 				950E461D1FF161AA00DA9F6F /* AttandanceTableViewCell.swift */,
 				9585F65D200AB03900F6E877 /* HomeTabBarController.swift */,
 			);
@@ -400,6 +403,7 @@
 				9585F65E200AB03900F6E877 /* HomeTabBarController.swift in Sources */,
 				ED01033A1FED8D1000039344 /* Session.swift in Sources */,
 				9585F65C200AAB3800F6E877 /* SettingsViewController.swift in Sources */,
+				951A2507201CD38800EBEF27 /* SessionsCollectionViewCell.swift in Sources */,
 				ED0103301FED327100039344 /* Constants.swift in Sources */,
 				EDA646661FED238F009A3C60 /* SplashViewController.swift in Sources */,
 				950E46161FF12EA300DA9F6F /* RolesViewController.swift in Sources */,

@@ -51,7 +51,6 @@ class Data {
     
     public static func loadData() -> Promise<JSON> {
         let realm = try! Realm()
-        
         return NetworkAPI.PrivateAPI.getProfile().then { json -> Promise<JSON> in
             if json[Constants.success].bool != true {
                 return Promise().then {
@@ -105,7 +104,6 @@ class Data {
                 }
                 for sessionJson in json[Constants.sessions].array! {
                     let session = Session()
-                    
                     session.sessionId = sessionJson[Constants.sessionId].string!
                     session.date = sessionJson[Constants.date].int64!
                     session.wordOfDay = sessionJson[Constants.wordOfDay].string ?? ""
@@ -130,7 +128,6 @@ class Data {
                                 var roles : [Role] = []
                                 for roleJson in json[Constants.roles].array! {
                                     let role = Role()
-                                    
                                     role.session = session
                                     role.user = realm.objects(User.self)
                                         .filter("userId == '\(roleJson[Constants.userId].string!)'")
@@ -184,7 +181,6 @@ class Data {
                     .first!
                 for attendanceJson in json[Constants.attendance].array! {
                     let attendance = Attendance()
-                    
                     attendance.session = realm.objects(Session.self)
                         .filter("sessionId == '\(attendanceJson[Constants.sessionId].string!)'")
                         .first!

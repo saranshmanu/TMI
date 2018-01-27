@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import Alamofire
-
-var sessionId = ""
+import RealmSwift
 
 class RolesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
-    var sessions:[NSDictionary] = []
     
+    var sessions:[NSDictionary] = []
+    var roles:[NSDictionary] = []
+    
+    @IBOutlet weak var sessionsCollectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidAppear(_ animated: Bool) {
@@ -22,153 +22,117 @@ class RolesViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.navigationController?.navigationBar.barTintColor =  UIColor.black
         self.tabBarController?.tabBar.tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
+        sessionsCollectionView.reloadData()
+        collectionView.reloadData()
+    }
+    
+    let realm = try! Realm()
+    
+    func querySessions() {
+        let session = realm.objects(Session.self)
+        var temp:NSDictionary
+        for i in session{
+            temp = [
+                "sessionId": i.sessionId,
+                "date": i.date,
+                "wordOfDay": i.wordOfDay,
+                "wordMeaning": i.wordMeaning,
+                "wordUsage": i.wordMeaning,
+                "genEvalReport": i.genEvalReport
+            ]
+            sessions.append(temp)
+        }
+        print(sessions)
+        sessionsCollectionView.reloadData()
+    }
+    
+    func queryRoles() {
+        let role = realm.objects(Role.self)
+        var temp:NSDictionary
+        var tempSession:NSDictionary
+        var tempUser:NSDictionary
+        for i in role{
+            tempSession = [
+                "sessionId": i.session?.sessionId,
+                "date": i.session?.date,
+                "wordOfDay": i.session?.wordOfDay,
+                "wordMeaning": i.session?.wordMeaning,
+                "wordUsage": i.session?.wordMeaning,
+                "genEvalReport": i.session?.genEvalReport
+            ]
+            tempUser = [
+                "userId" : i.user?.userId,
+                "name" : i.user?.userId
+            ]
+            temp = [
+                "session":tempSession,
+                "user":tempUser,
+                "roleId":i.roleId,
+                "role":i.role,
+                "notes":i.notes,
+                "topic":i.topic,
+                "time":i.time,
+                "ahs":i.ahs,
+                "grammarianReport":i.grammarianReport,
+                "evaluatee":i.evaluatee
+            ]
+            roles.append(temp)
+        }
+        collectionView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tabBarController?.tabBar.barTintColor =  UIColor.black
         self.navigationController?.navigationBar.barTintColor =  UIColor.black
         self.tabBarController?.tabBar.tintColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-//        let urlSessions = "https://api.tmivit.com/info/sessions"
-//        Alamofire.request(urlSessions, method: .post, parameters : ["clubId" : Data.clubId], headers : ["accessToken" : Data.accessToken]).responseJSON{ response in
-//            if response.result.isSuccess{
-//                let results:NSDictionary = response.result.value as! NSDictionary
-//                let check:Bool = results["success"]! as! Bool
-//                if check == true{
-//                    print("Successully fetched sessions")
-//                    sessions = results["sessions"] as! [NSDictionary]
-//                    print(sessions)
-//                    self.fetchRoles()
-//                }else{
-//                    print("Failed to fetch sessions")
-//                }
-//            }else{
-//                print("Failed JSON response")
-//            }
-//        }
-        
+        sessionsCollectionView.delegate = self
+        sessionsCollectionView.dataSource = self
+        querySessions()
+        queryRoles()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    var roles = [[NSDictionary]]()
-    func fetchRoles() {
-        if sessions.count != 0 {
-            functionToFetchRolesForEachSession()
-        }
-    }
-    
-    var i = 0
-    func functionToFetchRolesForEachSession() {
-        if i == sessions.count{
-            // do nothing
-        }else{
-            let session = String(describing: sessions[i]["sessionId"]!)
-//            let urlSessions = "https://api.tmivit.com/info/roles"
-//            Alamofire.request(urlSessions, method: .post, parameters : ["sessionId" : session], headers : ["accessToken" : Data.accessToken]).responseJSON{ res in
-//                if res.result.isSuccess{
-//                    let result:NSDictionary = res.result.value as! NSDictionary
-//                    let check:Bool = result["success"]! as! Bool
-//                    if check == true{
-//                        self.roles.append(result["roles"] as! [NSDictionary])
-//                        print(self.roles)
-//                    } else {
-//                        print("Failed to fetch roles")
-//                    }
-//                } else {
-//                    print("Failed JSON response")
-//                }
-//                self.collectionView.reloadData()
-//                self.i = self.i+1
-//                self.functionToFetchRolesForEachSession()
-//            }
-        }
-    }
-    
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sessions.count
+        if collectionView == sessionsCollectionView{
+            return sessions.count
+        } else {
+            return roles.count
+        }
     }
     
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "roles", for: indexPath) as! RolesCollectionViewCell
-        cell.background.layer.cornerRadius = 5.0
-        let milisecond = sessions[indexPath.row]["date"]! as! Int
-        let dateVar = Date.init(timeIntervalSince1970: TimeInterval(milisecond/1000))
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: dateVar)
-        let month = calendar.component(.month, from: dateVar)
-        let day = calendar.component(.day, from: dateVar)
-        cell.DateTextField.text = String(day) + " " + getMonth(monthInNumber: month)
-        cell.YearTextField.text = String(year)
-        cell.wordOfDay.text = String(describing: sessions[indexPath.row]["wordOfDay"]!)
-        cell.meaningOfTheWord.text = String(describing: sessions[indexPath.row]["wordMeaning"]!)
-        cell.wordUsage.text = String(describing: sessions[indexPath.row]["wordUsage"]!)
-        if roles.count == sessions.count{
-            if let x:[NSDictionary] = roles[indexPath.row] as! [NSDictionary]{
-                var roleLabel = ""
-                if x.count != 0{
-                    for i in 0...(x.count-1) {
-                        roleLabel = roleLabel + " " + Constants.getFullRole(role: String(describing: x[i]["role"]!))
-                    }
-                }else{
-                    roleLabel = "You have no role for this coming session!"
-                }
-                cell.upcomingRoleTextField.text = roleLabel
-            }
+        if collectionView == sessionsCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sessions", for: indexPath) as! SessionsCollectionViewCell
+            let x = Constants.findDate(milliSeconds: sessions[indexPath.row][Constants.date] as! Int)
+            cell.date.text = String(x.date)
+            cell.month.text = Constants.getMonth(monthInNumber: x.month)
+            cell.background.layer.cornerRadius = 10
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "roles", for: indexPath) as! RolesCollectionViewCell
+            let x = roles[indexPath.row] as NSDictionary
+            let y = x["session"] as! NSDictionary
+            let z = Constants.findDate(milliSeconds: y[Constants.date]! as! Int)
+            cell.DateTextField.text = String(z.date) + " " + Constants.getMonth(monthInNumber: z.month)
+            cell.wordOfDay.text = String(describing: y[Constants.wordOfDay]!)
+            cell.meaningOfTheWord.text = String(describing: y[Constants.wordMeaning]!)
+            cell.wordUsage.text = String(describing: y[Constants.wordUsage]!)
+            cell.upcomingRoleTextField.text = Constants.getFullRole(role: String(describing: x[Constants.role]!))
+            cell.background.layer.cornerRadius = 10
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        sessionId = String(describing: sessions[indexPath.row]["sessionId"]!)
-        if roles.count == sessions.count{
-//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "members") else {
-//                return
-//            }
-//            navigationController?.pushViewController(vc, animated: true)
-        }else{
-            //wait until the roles are fetched
-        }
-    }
-}
-
-func getMonth(monthInNumber:Int) -> String{
-    var month = ""
-    if monthInNumber == 1{
-        return "January"
-    }else if monthInNumber == 2{
-        return "February"
-    }else if monthInNumber == 3{
-        return "March"
-    }else if monthInNumber == 4{
-        return "April"
-    }else if monthInNumber == 5{
-        return "May"
-    }else if monthInNumber == 6{
-        return "June"
-    }else if monthInNumber == 7{
-        return "July"
-    }else if monthInNumber == 8{
-        return "August"
-    }else if monthInNumber == 9{
-        return "September"
-    }else if monthInNumber == 10{
-        return "October"
-    }else if monthInNumber == 1{
-        return "November"
-    }else{
-        return "December"
     }
 }

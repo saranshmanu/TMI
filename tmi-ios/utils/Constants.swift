@@ -6,6 +6,17 @@
 //  Copyright © 2017 Rakshith Ravi. All rights reserved.
 //
 
+import UIKit
+
+struct dateStructure {
+    var date:Int = 0
+    var month:Int = 0
+    var year:Int = 0
+    var hour:Int = 0
+    var minutes:Int = 0
+    var seconds:Int = 0
+}
+
 class Constants {
     
     public static let baseUrl = "https://api.tmivit.com"
@@ -90,6 +101,37 @@ class Constants {
         default:
             return ROLE_OTHER_FULL
         }
+    }
+    
+    public static func getMonth(monthInNumber:Int) -> String {
+        switch(monthInNumber) {
+            case 1: return "January"
+            case 2: return "Febuary"
+            case 3: return "March"
+            case 4: return "April"
+            case 5: return "May"
+            case 6: return "June"
+            case 7: return "July"
+            case 8: return "August"
+            case 9: return "September"
+            case 10: return "October"
+            case 11: return "November"
+            case 12: return "December"
+            default: return ""
+        }
+    }
+    
+    public static func findDate(milliSeconds:Int) -> dateStructure {
+        let d = Date.init(timeIntervalSince1970: TimeInterval(milliSeconds/1000))
+        var flag:dateStructure = dateStructure()
+        let calendar = Calendar.current
+        flag.year = calendar.component(.year, from: d)
+        flag.month = calendar.component(.month, from: d)
+        flag.date = calendar.component(.day, from: d)
+        flag.hour = calendar.component(.hour, from: d)
+        flag.minutes = calendar.component(.minute, from: d)
+        flag.seconds = calendar.component(.second, from: d)
+        return flag
     }
 }
 

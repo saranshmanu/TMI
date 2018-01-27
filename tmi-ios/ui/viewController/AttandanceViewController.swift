@@ -126,7 +126,7 @@ class AttandanceViewController: UIViewController, UITableViewDelegate, UITableVi
         let year = calendar.component(.year, from: dateVar)
         let month = calendar.component(.month, from: dateVar)
         let day = calendar.component(.day, from: dateVar)
-        cell.dateLabel.text = String(day) + " " + getMonth(monthInNumber: month) + " " + String(year)
+        cell.dateLabel.text = String(day) + " " + Constants.getMonth(monthInNumber: month) + " " + String(year)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
