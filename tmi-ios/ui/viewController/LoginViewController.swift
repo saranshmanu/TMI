@@ -30,8 +30,13 @@ class LoginViewController : UIViewController,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .default
         loadingIndicator.isHidden = true
         userId.delegate = self
         password.delegate = self
@@ -114,7 +119,7 @@ class LoginViewController : UIViewController,UITextFieldDelegate {
         self.password.isEnabled = true
         loginButton.isEnabled = true
         registerButton.isEnabled = true
-        self.loadingIndicator.isHidden = true
+        loadingIndicator.isHidden = true
         loadingIndicator.stopAnimating()
     }
     

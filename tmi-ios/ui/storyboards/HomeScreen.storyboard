@@ -144,7 +144,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRs-Rh-Mg8">
                                                             <rect key="frame" x="30" y="342" width="220" height="0.0"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -406,7 +406,7 @@
             </objects>
             <point key="canvasLocation" x="3464" y="1764"/>
         </scene>
-        <!--Attandance View Controller-->
+        <!--Toastmasters International-->
         <scene sceneID="YRI-5g-Zbe">
             <objects>
                 <viewController id="nct-ip-g0q" customClass="AttandanceViewController" customModule="tmi_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -509,7 +509,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4Sd-It-orv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HJE-ce-UkZ"/>
+                    <navigationItem key="navigationItem" title="Toastmasters International" id="HJE-ce-UkZ"/>
                     <connections>
                         <outlet property="attendanceTableView" destination="3ea-09-jrk" id="3mr-gx-BxJ"/>
                         <outlet property="pieChartView" destination="fLk-zH-slo" id="dvb-OH-Vzd"/>
