@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import RealmSwift
+
 class AttandanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var attendances:[NSDictionary] = []
