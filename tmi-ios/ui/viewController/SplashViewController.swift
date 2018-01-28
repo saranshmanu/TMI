@@ -24,7 +24,7 @@ class SplashViewController : UIViewController {
                     if json[Constants.success].bool == true {
                         // Successfully loaded data
                         let storyboard = UIStoryboard(name: "HomeScreen", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeScreen")
+                        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
                         self.present(viewController, animated: true, completion: nil)
                     } else {
                         // Some error. Show the error
@@ -43,16 +43,17 @@ class SplashViewController : UIViewController {
                 .catch { err in
                     // Not connected to the internet
                     let storyboard = UIStoryboard(name: "HomeScreen", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "HomeScreen")
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
                     self.present(viewController, animated: true, completion: nil)
-                }
+            }
         } else {
             // Show login screen
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "LoginScreen")
+                let viewController = storyboard.instantiateViewController(withIdentifier: "LoginScreenViewController")
                 self.present(viewController, animated: true, completion: nil)
             })
         }
     }
 }
+

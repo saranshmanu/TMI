@@ -19,23 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toastmasters_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5vj-f6-7Af">
-                                <rect key="frame" x="16" y="66" width="343" height="263"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="263" id="CpA-eh-FDi"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="-404.5" width="343" height="1496"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oa2-sB-tQg">
-                                <rect key="frame" x="177" y="391" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5vj-f6-7Af" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="46" id="3bg-OZ-LKu"/>
-                            <constraint firstItem="oa2-sB-tQg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8lq-jg-oGB"/>
-                            <constraint firstItem="oa2-sB-tQg" firstAttribute="top" secondItem="5vj-f6-7Af" secondAttribute="bottom" constant="62" id="CJn-H3-hGn"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5vj-f6-7Af" secondAttribute="trailing" constant="16" id="jsx-TM-QjT"/>
-                            <constraint firstItem="5vj-f6-7Af" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="w4O-Jo-5Qy"/>
-                            <constraint firstItem="5vj-f6-7Af" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yjl-1X-Ftr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5vj-f6-7Af" secondAttribute="trailing" constant="16" id="PwH-tH-yR1"/>
+                            <constraint firstItem="5vj-f6-7Af" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="enV-ZA-vgC"/>
+                            <constraint firstItem="5vj-f6-7Af" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lgH-o8-qub"/>
+                            <constraint firstItem="5vj-f6-7Af" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rB0-ho-5cl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
